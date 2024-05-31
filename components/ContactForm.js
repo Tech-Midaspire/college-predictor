@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 
 const ContactForm = ({ onFormSubmit }) => {
@@ -15,12 +16,28 @@ const ContactForm = ({ onFormSubmit }) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (formData.name && formData.email && formData.contact) {
-            onFormSubmit(formData);
-            console.log(formData)
+            try {
+                const response = await fetch('/api/submit-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    onFormSubmit(formData);
+                } else {
+                    alert('Error submitting form');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Error submitting form');
+            }
         } else {
             alert('Please fill in all fields');
         }
@@ -75,7 +92,7 @@ const ContactForm = ({ onFormSubmit }) => {
             </div>
             <div className="flex items-center justify-between">
                 <button
-                    className="bg-blue-500 hover:bg-red-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                 >
                     Submit

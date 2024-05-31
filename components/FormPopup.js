@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ContactForm from './Contact';
+import ContactForm from './ContactForm';
 
 const FormPopup = ({ children }) => {
     const [showPopup, setShowPopup] = useState(true);
