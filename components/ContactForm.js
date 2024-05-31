@@ -21,7 +21,7 @@ const ContactForm = ({ onFormSubmit }) => {
 
         if (formData.name && formData.email && formData.contact) {
             try {
-                const response = await fetch('/api/submit-form', {
+                const response = await fetch('https://college-predictorpro.netlify.app/api/submit-form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
