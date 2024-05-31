@@ -6,6 +6,7 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <Component {...pageProps} />
       {/* change */}
+      {/* fwfa */}
     </Layout>
   );
 }
