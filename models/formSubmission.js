@@ -8,9 +8,10 @@ const FormSubmissionSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   contact: {
-    type: String,
+    type: Number,
     required: true,
   },
 }, { timestamps: true });
