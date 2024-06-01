@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 const ContactForm = ({ onFormSubmit }) => {
@@ -7,6 +6,7 @@ const ContactForm = ({ onFormSubmit }) => {
         email: '',
         contact: ''
     });
+    const [error, setError] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,6 +18,7 @@ const ContactForm = ({ onFormSubmit }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
 
         if (formData.name && formData.email && formData.contact) {
             try {
@@ -32,19 +33,20 @@ const ContactForm = ({ onFormSubmit }) => {
                 if (response.ok) {
                     onFormSubmit(formData);
                 } else {
-                    alert('Error submitting form');
+                    setError(data.message || 'Error submitting form');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
-                alert('Error submitting form');
+                setError('An unexpected error occurred. Please try again.');
             }
         } else {
-            alert('Please fill in all fields');
+            setError('Please fill in all fields');
         }
     };
 
     return (
         <form onSubmit={handleSubmit} className="bg-black rounded px-8 pt-6 pb-8 mb-4">
+            {error && <div className="mb-4 text-red-500">{error}</div>}
             <div className="mb-4">
                 <label className="block text-white text-sm font-bold mb-2" htmlFor="name">
                     Name
@@ -101,5 +103,4 @@ const ContactForm = ({ onFormSubmit }) => {
         </form>
     );
 };
-
-export default ContactForm;
+export default ContactForm

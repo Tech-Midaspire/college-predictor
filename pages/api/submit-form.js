@@ -3,10 +3,30 @@ import dbConnect from '../../lib/mongodb';
 import FormSubmission from '../../models/formSubmission';
 
 export default async function handler(req, res) {
-    await dbConnect();
+    res.setHeader('Access-Control-Allow-Origin', 'https://college-predictorpro.netlify.app');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+    await dbConnect();
+    if (req.method === 'OPTIONS') {
+
+        return res.status(200).end();
+    }
     if (req.method === 'POST') {
         const { name, email, contact } = req.body;
+
+        if (!name || !email || !contact) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ message: 'Invalid email format' });
+        }
+        const contactRegex = /^[0-9]+$/;
+        if (!contactRegex.test(contact)) {
+            return res.status(400).json({ message: 'Contact number must be numeric' });
+        }
 
         try {
             const newSubmission = new FormSubmission({
