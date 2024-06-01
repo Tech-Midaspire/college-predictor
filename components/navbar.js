@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 // Renders Navbar as General Component
-const Navbar = ({ item1, item2 }) => {
+const Navbar = ({ item1 }) => {
   return (
     <div className="bg-white shadow-md">
       <div className="flex flex-row justify-between items-center px-4 md:px-8 py-2">
