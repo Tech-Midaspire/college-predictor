@@ -15,13 +15,28 @@ const ContactForm = ({ onFormSubmit }) => {
             [name]: value
         });
     };
-///
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
 
         if (formData.name && formData.email && formData.contact) {
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                setError('Invalid email format');
+                return;
+            }
+
+
+            const contactRegex = /^[0-9]{10}$/;
+            if (!contactRegex.test(formData.contact)) {
+                setError('Invalid contact number. Please enter a 10-digit number');
+                return;
+            }
+
             try {
+                console.log('Sending form data:', formData);
                 const response = await fetch('https://college-predictorpro.netlify.app/api/submit-form', {
                     method: 'POST',
                     headers: {
@@ -30,9 +45,12 @@ const ContactForm = ({ onFormSubmit }) => {
                     body: JSON.stringify(formData)
                 });
 
+                console.log('Response status:', response.status);
                 if (response.ok) {
                     onFormSubmit(formData);
                 } else {
+                    const data = await response.json();
+                    console.log('Error response data:', data);
                     setError(data.message || 'Error submitting form');
                 }
             } catch (error) {
@@ -103,4 +121,6 @@ const ContactForm = ({ onFormSubmit }) => {
         </form>
     );
 };
+
+
 export default ContactForm

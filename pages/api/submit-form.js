@@ -15,9 +15,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { name, email, contact } = req.body;
 
-        if (!name || !email || !contact) {
-            return res.status(400).json({ message: 'All fields are required' });
-        }
+
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
@@ -25,9 +23,11 @@ export default async function handler(req, res) {
         }
         const contactRegex = /^[0-9]+$/;
         if (!contactRegex.test(contact)) {
-            return res.status(400).json({ message: 'Contact number must be numeric' });
+            return res.status(400).json({ message: 'Invalid contact number. Please enter a 10-digit number' });
         }
-
+        if (!name || !email || !contact) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
         try {
             const newSubmission = new FormSubmission({
                 name,
