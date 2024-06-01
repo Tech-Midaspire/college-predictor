@@ -157,7 +157,7 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col h-screen bg-slate-950 ">
-      <div className="flex justify-center items-center flex-col flex-grow px-4 sm:px-10 bg-slate-950">
+      <div className="flex justify-center items-center flex-col flex-grow px-4 sm:px-10">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-FHGVRT52L7"
           strategy="afterInteractive"
@@ -171,10 +171,13 @@ const HomePage = () => {
               gtag('config', 'G-FHGVRT52L7');
             `}
         </Script>
-        <div className="text-center flex flex-col items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mt-8 pb-10 border-b-2 border-gray-200 overflow-y-auto min-h-screen">
+        
+        <div className="text-center flex flex-col  items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 -mt-20 pb-10 border-b-2 border-zinc-950  min-h-sc">
           <h1 className="text-2xl md:text-3xl font-bold mb-6 text-zinc-100">{getConstants().TITLE}</h1>
-          <div className="flex flex-col sm:flex-row gap-4 flex-wrap w-full overscroll-y-auto">
-            <div className="my-4 w-full ">
+
+          <div className="grid grid-cols-2 sm:flex-row gap-4 flex-wrap w-full overscroll-y-auto">
+
+            <div className=" my-4 w-full">
               <label className="block text-md font-semibold text-zinc-100 mb-2">
                 {getConstants().EXAM_LABEL}
               </label>
@@ -184,6 +187,7 @@ const HomePage = () => {
                 className="w-full"
               />
             </div>
+
             <div className="my-4 w-full">
               <label className="block text-md font-semibold text-zinc-100 mb-2">
                 {getConstants().CATEGORY_LABEL}
@@ -200,6 +204,7 @@ const HomePage = () => {
                 className="w-full"
               />
             </div>
+
             <div className="my-4 w-full">
               <label className="block text-md font-semibold text-zinc-100 mb-2">
                 {exam === "NEET" || exam === "MHT CET" || exam === "KCET"
@@ -213,106 +218,108 @@ const HomePage = () => {
                 className="border border-gray-300 rounded w-full p-2"
               />
             </div>
+
+
+            {(exam !== "MHT CET" && exam !== "KCET") && (
+              <div className="my-4 w-full">
+                <label className="block text-md font-semibold text-zinc-100 mb-2">
+                  {getConstants().ROUND_NUMBER_LABEL}
+                </label>
+                <Dropdown
+                  options={roundNumberOptions}
+                  onChange={handleRoundNumberDropdownChange}
+                  isDisabled={exam === "MHT CET" || exam === "KCET"}
+                  className="w-full"
+                />
+              </div>
+            )}
+            {(exam !== "NEET" && exam !== "KCET") && (
+              <div className="my-4 w-full">
+                <label className="block text-md font-semibold text-zinc-100 mb-2">
+                  {getConstants().GENDER_LABEL}
+                </label>
+                <Dropdown
+                  options={exam === "MHT CET" ? mhtcetGenderOptions : genderOptions}
+                  onChange={handleGenderDropdownChange}
+                  isDisabled={exam === "NEET" || exam === "KCET"}
+                  className="w-full"
+                />
+              </div>
+            )}
+            {exam !== "NEET" && (
+              <div className="my-4 w-full">
+                <label className="block text-md font-semibold text-zinc-100 mb-2">
+                  {getConstants().STATE_LABEL}
+                </label>
+                <Dropdown
+                  options={
+                    exam === "MHT CET"
+                      ? mhtcetStateOptions
+                      : exam === "KCET"
+                        ? kcetStateOptions
+                        : stateOptions
+                  }
+                  onChange={handleStateNameDropdownChange}
+                  isDisabled={exam === "NEET"}
+                  className="w-full"
+                />
+              </div>
+            )}
+            {exam === "MHT CET" && (
+              <>
+                <div className="my-4 w-full">
+                  <label className="block text-md font-semibold text-zinc-100 mb-2">
+                    {getConstants().MHTCET_PWD_LABEL}
+                  </label>
+                  <Dropdown
+                    options={pwdOptions}
+                    onChange={handlePwdDropdownChange}
+                    isDisabled={exam !== "MHT CET"}
+                    className="w-full"
+                  />
+                </div>
+                <div className="my-4 w-full">
+                  <label className="block text-md font-semibold text-zinc-100 mb-2">
+                    {getConstants().MHTCET_DEFENSE_LABEL}
+                  </label>
+                  <Dropdown
+                    options={defenseOptions}
+                    onChange={handleDefenseDropdownChange}
+                    isDisabled={exam !== "MHT CET"}
+                    className="w-full"
+                  />
+                </div>
+              </>
+            )}
+            {exam === "KCET" && (
+              <>
+                <div className="my-4 w-full">
+                  <label className="block text-md font-semibold text-zinc-100 mb-2">
+                    {getConstants().KCET_LANGUAGE_LABEL}
+                  </label>
+                  <Dropdown
+                    options={kcetLanguageOptions}
+                    onChange={handleLanguageChange}
+                    isDisabled={exam !== "KCET"}
+                    className="w-full"
+                  />
+                </div>
+                <div className="my-4 w-full">
+                  <label className="block text-md font-semibold text-zinc-100 mb-2">
+                    {getConstants().KCET_RURAL_LABEL}
+                  </label>
+                  <Dropdown
+                    options={kcetRuralOptions}
+                    onChange={handleRuralChange}
+                    isDisabled={exam !== "KCET"}
+                    className="w-full"
+                  />
+                </div>
+              </>
+            )}
           </div>
-          {(exam !== "MHT CET" && exam !== "KCET") && (
-            <div className="my-4 w-full">
-              <label className="block text-md font-semibold text-zinc-100 mb-2">
-                {getConstants().ROUND_NUMBER_LABEL}
-              </label>
-              <Dropdown
-                options={roundNumberOptions}
-                onChange={handleRoundNumberDropdownChange}
-                isDisabled={exam === "MHT CET" || exam === "KCET"}
-                className="w-full"
-              />
-            </div>
-          )}
-          {(exam !== "NEET" && exam !== "KCET") && (
-            <div className="my-4 w-full">
-              <label className="block text-md font-semibold text-zinc-100 mb-2">
-                {getConstants().GENDER_LABEL}
-              </label>
-              <Dropdown
-                options={exam === "MHT CET" ? mhtcetGenderOptions : genderOptions}
-                onChange={handleGenderDropdownChange}
-                isDisabled={exam === "NEET" || exam === "KCET"}
-                className="w-full"
-              />
-            </div>
-          )}
-          {exam !== "NEET" && (
-            <div className="my-4 w-full">
-              <label className="block text-md font-semibold text-zinc-100 mb-2">
-                {getConstants().STATE_LABEL}
-              </label>
-              <Dropdown
-                options={
-                  exam === "MHT CET"
-                    ? mhtcetStateOptions
-                    : exam === "KCET"
-                      ? kcetStateOptions
-                      : stateOptions
-                }
-                onChange={handleStateNameDropdownChange}
-                isDisabled={exam === "NEET"}
-                className="w-full"
-              />
-            </div>
-          )}
-          {exam === "MHT CET" && (
-            <>
-              <div className="my-4 w-full">
-                <label className="block text-md font-semibold text-zinc-100 mb-2">
-                  {getConstants().MHTCET_PWD_LABEL}
-                </label>
-                <Dropdown
-                  options={pwdOptions}
-                  onChange={handlePwdDropdownChange}
-                  isDisabled={exam !== "MHT CET"}
-                  className="w-full"
-                />
-              </div>
-              <div className="my-4 w-full">
-                <label className="block text-md font-semibold text-zinc-100 mb-2">
-                  {getConstants().MHTCET_DEFENSE_LABEL}
-                </label>
-                <Dropdown
-                  options={defenseOptions}
-                  onChange={handleDefenseDropdownChange}
-                  isDisabled={exam !== "MHT CET"}
-                  className="w-full"
-                />
-              </div>
-            </>
-          )}
-          {exam === "KCET" && (
-            <>
-              <div className="my-4 w-full">
-                <label className="block text-md font-semibold text-zinc-100 mb-2">
-                  {getConstants().KCET_LANGUAGE_LABEL}
-                </label>
-                <Dropdown
-                  options={kcetLanguageOptions}
-                  onChange={handleLanguageChange}
-                  isDisabled={exam !== "KCET"}
-                  className="w-full"
-                />
-              </div>
-              <div className="my-4 w-full">
-                <label className="block text-md font-semibold text-zinc-100 mb-2">
-                  {getConstants().KCET_RURAL_LABEL}
-                </label>
-                <Dropdown
-                  options={kcetRuralOptions}
-                  onChange={handleRuralChange}
-                  isDisabled={exam !== "KCET"}
-                  className="w-full"
-                />
-              </div>
-            </>
-          )}
           <button
-            className="mt-2 px-5  py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-white disabled:text-black disabled:cursor-not-allowed"
+            className="mt-10 px-5  py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-white disabled:text-black disabled:cursor-not-allowed"
             onClick={handleSubmit}
             disabled={isSubmitDisabled}
           >
