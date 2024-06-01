@@ -21,9 +21,7 @@ const Navbar = ({ item1, item2 }) => {
           <Link href="/">
             <p className="hover:font-semibold active:font-light cursor-pointer">{item1}</p>
           </Link>
-          // <Link href="/scholarships">
-          //   <p className="hover:font-semibold active:font-light cursor-pointer">{item2}</p>
-          // </Link>
+        
         </div>
       </div>
     </div>
