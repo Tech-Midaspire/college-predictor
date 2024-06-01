@@ -156,8 +156,8 @@ const ScholarshipFinder = () => {
   ]);
 
   return (
-    <div className="flex flex-col items-center w-full mt-8 pb-10">
-      <div className="text-center flex flex-col items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
+    <div className="flex flex-col items-center w-full mt-8 pb-10 ">
+      <div className="text-center flex flex-col items-center w-full  sm:w-3/4 md:w-2/3 lg:w-1/2">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-FHGVRT52L7"
           strategy="afterInteractive"

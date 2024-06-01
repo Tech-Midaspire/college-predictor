@@ -88,15 +88,15 @@ const ScholarshipPage = () => {
     menuPortalTarget: isClient ? document.body : null,
     styles: isClient
       ? {
-          menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-        }
+        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+      }
       : {},
     className: "w-full",
   };
 
   return (
-    <div className="flex flex-col justify-start items-center w-full mt-8 pb-10">
-      <div className="text-center flex flex-col items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
+    <div className="flex flex-col justify-start items-center w-full pt-8 pb-10 bg-slate-950 overflow-y-scroll">
+      <div className="text-center flex flex-col items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2  ">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-FHGVRT52L7"
           strategy="afterInteractive"
@@ -110,12 +110,12 @@ const ScholarshipPage = () => {
                 gtag('config', 'G-FHGVRT52L7');
                 `}
         </Script>
-        <h1 className="text-2xl md:text-3xl font-bold mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-zinc-100">
           {getConstants().SCHOLARSHIP_TITLE}
         </h1>
         <div className="flex flex-col sm:flex-row gap-4 flex-wrap w-full justify-center">
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().STATUS_LABEL}
             </label>
             <Dropdown
@@ -125,7 +125,7 @@ const ScholarshipPage = () => {
             />
           </div>
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().GRADE_LABEL}
             </label>
             <Dropdown
@@ -135,7 +135,7 @@ const ScholarshipPage = () => {
             />
           </div>
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().STREAM_LABEL}
             </label>
             <Dropdown
@@ -145,7 +145,7 @@ const ScholarshipPage = () => {
             />
           </div>
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().CATEGORY_LABEL}
             </label>
             <Dropdown
@@ -153,12 +153,12 @@ const ScholarshipPage = () => {
               onChange={handleCategoryDropdownChange}
               {...dropdownProps}
             />
-            <p className="text-sm text-gray-700 mt-1">
+            <p className="text-sm text-zinc-50 mt-1">
               {getConstants().CATEGORY_HELP_TEXT}
             </p>
           </div>
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().FAMILY_INCOME_LABEL}
             </label>
             <Dropdown
@@ -166,15 +166,15 @@ const ScholarshipPage = () => {
               onChange={handleFamilyIncomeChange}
               {...dropdownProps}
             />
-            <p className="text-sm text-gray-700 mt-1">
+            <p className="text-sm text-zinc-50 mt-1">
               {getConstants().FAMILY_INCOME_HELP_TEXT}
             </p>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-zinc-50">
               {getConstants().FAMILY_INCOME_HELP_TEXT_TWO}
             </p>
           </div>
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().GENDER_LABEL}
             </label>
             <Dropdown
@@ -184,7 +184,7 @@ const ScholarshipPage = () => {
             />
           </div>
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().STATE_LABEL}
             </label>
             <Dropdown
@@ -194,7 +194,7 @@ const ScholarshipPage = () => {
             />
           </div>
           <div className="my-4 w-full sm:w-1/2">
-            <label className="block text-md font-semibold text-gray-700 mb-2">
+            <label className="block text-md font-semibold text-zinc-100 mb-2">
               {getConstants().CITY_LABEL}
             </label>
             <Dropdown
@@ -205,7 +205,7 @@ const ScholarshipPage = () => {
           </div>
         </div>
         <button
-          className={`mt-6 px-8 py-2.5 rounded-lg bg-red-600 text-white cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-gray-300 disabled:cursor-not-allowed`}
+          className="mt-2 px-5 py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-white disabled:text-black disabled:cursor-not-allowed"
           onClick={handleSubmit}
           disabled={isSubmitDisabled}
         >
