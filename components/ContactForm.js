@@ -4,7 +4,7 @@ const ContactForm = ({ onFormSubmit }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        contact: ''
+        contact: '',
     });
     const [error, setError] = useState(null);
 
@@ -37,7 +37,7 @@ const ContactForm = ({ onFormSubmit }) => {
 
             try {
                 console.log('Sending form data:', formData);
-                const response = await fetch('http://localhost:3000/api/submit-form', {
+                const response = await fetch('https://college-predictor-beta.vercel.app/submit-form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
