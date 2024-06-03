@@ -1,9 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ContactForm from './ContactForm';
 
 const FormPopup = ({ children }) => {
     const [showPopup, setShowPopup] = useState(true);
     const [formSubmitted, setFormSubmitted] = useState(false);
+
+    useEffect(() => {
+
+        const isFormSubmitted = localStorage.getItem('formSubmitted');
+        if (isFormSubmitted) {
+            setShowPopup(false);
+        }
+    }, []);
 
     const handleClose = () => {
         if (formSubmitted) {
@@ -13,6 +21,7 @@ const FormPopup = ({ children }) => {
 
     const handleFormSubmit = () => {
         setFormSubmitted(true);
+        localStorage.setItem('formSubmitted', 'true');
     };
 
     return (
