@@ -21,9 +21,8 @@ const FormPopup = ({ children }) => {
     };
 
     const handleFormSubmit = async () => {
-        setIsSubmitting(true);
         try {
-            
+            setIsSubmitting(true); 
             await new Promise(resolve => setTimeout(resolve, 500));
             setFormSubmitted(true);
             localStorage.setItem('formSubmitted', 'true');
@@ -31,7 +30,7 @@ const FormPopup = ({ children }) => {
         } catch (error) {
             console.error("Form submission failed", error);
         } finally {
-            setIsSubmitting(false);
+            setIsSubmitting(false); 
         }
     };
 
