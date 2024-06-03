@@ -27,6 +27,13 @@ const Navbar = () => {
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
+    if (!isMenuOpen) {
+
+      document.body.style.overflow = "hidden";
+    } else {
+
+      document.body.style.overflow = "auto";
+    }
   };
 
   const closeMenu = () => {
@@ -34,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-slate-950 text-white">
+    <nav className="bg-slate-950 text-white pb-5 lg:pb-0">
       <div className="max-w-7xl mx-auto px-4 lg:px-3 h-100px">
         <div className="flex justify-between items-center">
           {/* Left side for logo and streams button */}
@@ -45,7 +52,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className="relative">
+            <div className="relative ">
               <button
                 onMouseEnter={() => handleMouseEnter('streams')}
                 onMouseLeave={handleMouseLeave}
@@ -57,7 +64,7 @@ const Navbar = () => {
                 <div
                   onMouseEnter={() => handleMouseEnter('streams')}
                   onMouseLeave={handleMouseLeave}
-                  className="origin-top-right absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 text-center focus:outline-none"
+                  className="origin-top-right  absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 text-center focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                 >
@@ -65,7 +72,7 @@ const Navbar = () => {
                     <div
                       onMouseEnter={() => handleSubSubmenuEnter('commerce')}
                       onMouseLeave={handleSubSubmenuLeave}
-                      className="relative"
+                      className="relative "
                     >
                       <Link href="/commerce" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                         Commerce
@@ -152,11 +159,11 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/ayurvedic" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Ayurvedic
+                      <Link href="/ayurvedic" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">                        Ayurvedic
                       </Link>
                       {activeSubSubmenu === 'ayurvedic' && (
                         <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+
                           <Link href="/ayurvedic/hr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             BAMS/MD in Ayurveda
                           </Link>
@@ -224,13 +231,6 @@ const Navbar = () => {
             </div>
           </div>
 
-
-
-
-
-
-
-
           {/* Right side for links and buttons */}
           <div className="hidden md:flex items-center ">
             <Link href="/our-story" className="block px-4 lg:-mr-4 py-2  text-base text-white 100 font-sans  ">
@@ -285,38 +285,40 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-slate-900">
-          <div className="py-2 space-y-1 px-2">
-            <Link href="/our-story" className="block" onClick={closeMenu}>
-              Our Story
-            </Link>
-            <Link href="/blog" className="block" onClick={closeMenu}>
-              Blog
-            </Link>
-            <Link href="/contact" className="block" onClick={closeMenu}>
-              Contact
-            </Link>
-          </div>
+        <>
+          <div className="md:hidden bg-slate-900 h-screen ">
+            <div className="py-2 space-y-1 px-2">
+              <Link href="/our-story" className="block" onClick={closeMenu}>
+                Our Story
+              </Link>
+              <Link href="/blog" className="block" onClick={closeMenu}>
+                Blog
+              </Link>
+              <Link href="/contact" className="block" onClick={closeMenu}>
+                Contact
+              </Link>
+            </div>
 
-          <div className="py-2 px-2">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search Colleges..."
-                className="w-full px-4 py-2 rounded-full focus:outline-none bg-transparent border border-gray-300 text-gray-700 placeholder-gray-500"
-              />
+            <div className="py-2 px-2">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search Colleges..."
+                  className="w-full px-4 py-2 rounded-full focus:outline-none bg-transparent border border-gray-300 text-gray-700 placeholder-gray-500"
+                />
+              </div>
+            </div>
+
+            <div className="py-2 space-y-1 px-2">
+              <button className="w-full text-white bg-indigo-600 py-2 rounded-sm hover:bg-white hover:text-indigo-600" onClick={closeMenu}>
+                College Predictor
+              </button>
+              <button className="w-full text-white bg-indigo-600 py-2 rounded-sm hover:bg-white hover:text-indigo-600" onClick={closeMenu}>
+                Scholarship
+              </button>
             </div>
           </div>
-
-          <div className="py-2 space-y-1 px-2">
-            <button className="w-full text-white bg-indigo-600 py-2 rounded-sm hover:bg-white hover:text-indigo-600">
-              College Predictor
-            </button>
-            <button className="w-full text-white bg-indigo-600 py-2 rounded-sm hover:bg-white hover:text-indigo-600">
-              Scholarship
-            </button>
-          </div>
-        </div>
+        </>
       )}
     </nav>
   );
