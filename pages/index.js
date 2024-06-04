@@ -336,7 +336,7 @@ const HomePage = () => {
                         )}
                     </div>
                     <button
-                        className="mt-[76px] lg:mt-10 px-5  py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-white disabled:text-black disabled:cursor-not-allowed"
+                         className="mt-[76px] lg:mt-10 px-5  py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-indigo-700  disabled:text-white disabled:cursor-not-allowed"
                         onClick={handleSubmit}
                         disabled={isSubmitDisabled}
                     >
