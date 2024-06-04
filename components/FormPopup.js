@@ -9,7 +9,7 @@ const FormPopup = ({ children }) => {
     const handleFormSubmit = async () => {
         setIsSubmitting(true);
         try {
-            // Simulate form submission delay
+            
             await new Promise(resolve => setTimeout(resolve, 500));
             setFormSubmitted(true);
             setShowPopup(false);
