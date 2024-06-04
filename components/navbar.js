@@ -7,22 +7,32 @@ const Navbar = () => {
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const [activeSubSubmenu, setActiveSubSubmenu] = useState(null);
 
-  const handleMouseEnter = (submenu) => {
-    setActiveSubmenu(submenu);
-    setActiveSubSubmenu(null); // Reset sub-submenu when entering a new submenu
-  };
+  let submenuTimeout;
+  let subSubmenuTimeout;
 
-  const handleMouseLeave = () => {
-    setActiveSubmenu(null);
+  const handleMouseEnter = (submenu) => {
+    clearTimeout(submenuTimeout);
+    setActiveSubmenu(submenu);
     setActiveSubSubmenu(null);
   };
 
+  const handleMouseLeave = () => {
+    submenuTimeout = setTimeout(() => {
+      setActiveSubmenu(null);
+      setActiveSubSubmenu(null);
+    }, 300);
+  };
+
+
   const handleSubSubmenuEnter = (subSubmenu) => {
+    clearTimeout(subSubmenuTimeout);
     setActiveSubSubmenu(subSubmenu);
   };
 
   const handleSubSubmenuLeave = () => {
-    setActiveSubSubmenu(null);
+    subSubmenuTimeout = setTimeout(() => {
+      setActiveSubSubmenu(null);
+    }, 300);
   };
 
   const handleMenuToggle = () => {
@@ -38,33 +48,35 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+    document.body.style.overflow = "auto";
   };
 
   return (
-    <nav className="bg-slate-950 text-white pb-5 lg:pb-0">
+    <nav className="bg-slate-950 text-white pb-5 lg:pb-0 -mr-3 lg:mr-0">
       <div className="max-w-7xl mx-auto px-4 lg:px-3 h-100px">
         <div className="flex justify-between items-center">
           {/* Left side for logo and streams button */}
           <div className="flex items-center">
-            <div className="flex-shrink-0 mr-16 -ml-5">
-              <Link href="/">
+            <div className="flex-shrink-0 mr-16 -ml-4 lg:-ml-7">
+              <Link href="https://eduaspire.xyz/">
                 <Image src="/logo.webp" alt="Logo" width={100} height={100} />
               </Link>
             </div>
 
-            <div className="relative ">
+            <div className="relative z-20  ">
               <button
                 onMouseEnter={() => handleMouseEnter('streams')}
                 onMouseLeave={handleMouseLeave}
-                className="px-8 py-[5px] font-sans rounded-sm focus:outline-none focus:bg-white-700 bg-white text-slate-900"
+                className="px-6 =ml-4 py-[5px] font-sans rounded-sm focus:outline-none focus:bg-white-700 bg-white text-slate-900"
               >
-                Streams
+                Streams<i class="fa-solid fa-angle-down ml-1"></i>
+
               </button>
               {activeSubmenu === 'streams' && (
                 <div
                   onMouseEnter={() => handleMouseEnter('streams')}
                   onMouseLeave={handleMouseLeave}
-                  className="origin-top-right  absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 text-center focus:outline-none"
+                  className="origin-top-right absolute left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 text-center focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                 >
@@ -72,14 +84,14 @@ const Navbar = () => {
                     <div
                       onMouseEnter={() => handleSubSubmenuEnter('commerce')}
                       onMouseLeave={handleSubSubmenuLeave}
-                      className="relative "
+                      className="relative flex justify-between"
                     >
-                      <Link href="/commerce" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Commerce
+                      <Link href="https://eduaspire.xyz/category/courses/Commerce" className="block ml-4 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Commerce<i class="fa-solid fa-angle-right ml-5"></i>
                       </Link>
                       {activeSubSubmenu === 'commerce' && (
                         <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                          <Link href="/commerce/accounting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/BCom-MCom" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             B.Com/M.Com
                           </Link>
                         </div>
@@ -91,12 +103,12 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/law" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Law
+                      <Link href="https://eduaspire.xyz/category/courses/law" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Law <i class="fa-solid fa-angle-right"></i>
                       </Link>
                       {activeSubSubmenu === 'law' && (
-                        <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                          <Link href="/law/civil" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        <div className="flex justify-between absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/LLB-LLM" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             LLB/LLM
                           </Link>
                         </div>
@@ -108,12 +120,12 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/management" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Management
+                      <Link href="https://eduaspire.xyz/category/courses/management" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Management<i class="fa-solid fa-angle-right"></i>
                       </Link>
                       {activeSubSubmenu === 'management' && (
-                        <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                          <Link href="/management/hr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        <div className="flex justify-between absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/MBA-BBA" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             MBA/BBA
                           </Link>
                         </div>
@@ -125,12 +137,12 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/architecture" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Architecture
+                      <Link href="https://eduaspire.xyz/category/courses/architecture" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Architecture<i class="fa-solid fa-angle-right"></i>
                       </Link>
                       {activeSubSubmenu === 'architecture' && (
-                        <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                          <Link href="/architecture/hr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        <div className="flex justify-between absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/BArch-MArch" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             B.Arch/M.Arch
                           </Link>
                         </div>
@@ -142,12 +154,12 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/engineering" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Engineering
+                      <Link href="https://eduaspire.xyz/category/courses/engineering" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Engineering<i class="fa-solid fa-angle-right"></i>
                       </Link>
                       {activeSubSubmenu === 'engineering' && (
-                        <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                          <Link href="/engineering/hr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        <div className="flex justify-between absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/BE-BTech-MTech" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             B.E/B.Tech/B.Arch
                           </Link>
                         </div>
@@ -159,12 +171,13 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/ayurvedic" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">                        Ayurvedic
+                      <Link href="https://eduaspire.xyz/category/courses/ayurvedic" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Ayurvedic <i class="fa-solid fa-angle-right"></i>
                       </Link>
                       {activeSubSubmenu === 'ayurvedic' && (
-                        <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <div className="flex justify-between absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
 
-                          <Link href="/ayurvedic/hr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/BAMS-MD-in-Ayurveda" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             BAMS/MD in Ayurveda
                           </Link>
                         </div>
@@ -176,12 +189,12 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/dental" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Dental
+                      <Link href="https://eduaspire.xyz/category/courses/dental" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Dental<i class="fa-solid fa-angle-right"></i>
                       </Link>
                       {activeSubSubmenu === 'dental' && (
-                        <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                          <Link href="/dental/hr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        <div className="flex justify-between absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/BDS-MDS" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             BDS/MDS
                           </Link>
                         </div>
@@ -193,18 +206,18 @@ const Navbar = () => {
                       onMouseLeave={handleSubSubmenuLeave}
                       className="relative"
                     >
-                      <Link href="/medical" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                        Medical
+                      <Link href="https://eduaspire.xyz/category/courses/medical" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        Medical<i class="fa-solid fa-angle-right"></i>
                       </Link>
                       {activeSubSubmenu === 'medical' && (
-                        <div className="absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                          <Link href="/medical/hr" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                        <div className="flex justify-between absolute left-full top-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                          <Link href="https://eduaspire.xyz/subcategory/courses/MBBS-MD-MS-BPT" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                             MBBS/MD
                           </Link>
                         </div>
                       )}
                     </div>
-                    <Link href="/all" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                    <Link href="https://eduaspire.xyz/courses" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                       All
                     </Link>
                   </div>
@@ -233,21 +246,25 @@ const Navbar = () => {
 
           {/* Right side for links and buttons */}
           <div className="hidden md:flex items-center ">
-            <Link href="/our-story" className="block px-4 lg:-mr-4 py-2  text-base text-white 100 font-sans  ">
+            <Link href="https://eduaspire.xyz/about-us" className="block px-4 lg:-mr-4 py-2  text-base text-white 100 font-sans  ">
               Our Story
             </Link>
-            <Link href="/blog" className="block px-4 py-2 lg:-mr-4  text-base  text-white font-sans ">
+            <Link href="https://eduaspire.xyz/blogs" className="block px-4 py-2 lg:-mr-4  text-base  text-white font-sans ">
               Blog
             </Link>
-            <Link href="/contact" className="block px-4 py-2 lg:-mr-3 text-base text-white font-sans ">
+            <Link href="https://eduaspire.xyz/contact-us" className="block px-4 py-2 lg:-mr-3 text-base text-white font-sans ">
               Contact
             </Link>
-            <button className="ml-2 px-6 py-[10px] font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
+            <Link href="https://college-predictor-beta.vercel.app/"><button className="ml-2 px-6 py-[10px] font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
               College Predictor
-            </button>
-            <button className="ml-2 px-8 py-[10px] font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
-              Scholarship
-            </button>
+            </button></Link>
+
+            <Link href="https://college-predictor-beta.vercel.app/scholarships">
+              <button className="ml-2 px-8 py-[10px] font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
+                Scholarship
+              </button>
+            </Link>
+
           </div>
 
           {/* Mobile menu button */}
