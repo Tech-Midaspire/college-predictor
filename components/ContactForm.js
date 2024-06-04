@@ -61,14 +61,14 @@ const ContactForm = ({ onFormSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-black text-white rounded px-8 pt-6 pb-8 mb-4">
+        <form onSubmit={handleSubmit} className="bg-indigo-100 border border-black border-solid shadow-zinc-5 rounded px-8 pt-6 pb-8 mb-4">
             {error && <div className="mb-4 text-red-500">{error}</div>}
             <div className="mb-4">
-                <label className="block text-white text-sm font-bold mb-2" htmlFor="name">
+                <label className="block text-black text-sm font-bold mb-2" htmlFor="name">
                     Name
                 </label>
                 <input
-                    className="appearance-none border border-black rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:border-blue-500"
+                    className="appearance-none border border-purple-900 rounded w-full py-2 px-3 text-black  leading-tight focus:outline-none focus:border-blue-500"
                     id="name"
                     type="text"
                     placeholder="Name"
@@ -79,7 +79,7 @@ const ContactForm = ({ onFormSubmit }) => {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
+                <label className="block text-black text-sm font-bold mb-2" htmlFor="email">
                     Email
                 </label>
                 <input
@@ -94,7 +94,7 @@ const ContactForm = ({ onFormSubmit }) => {
                 />
             </div>
             <div className="mb-6">
-                <label className="block text-white text-sm font-bold mb-2" htmlFor="contact">
+                <label className="block text-black text-sm font-bold mb-2" htmlFor="contact">
                     Contact No
                 </label>
                 <input
@@ -110,7 +110,7 @@ const ContactForm = ({ onFormSubmit }) => {
             </div>
             <div className="flex items-center justify-center lg:mt-4">
                 <button
-                    className="bg-blue-800 hover:bg-red-700 text-white  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-indigo-700 text-center hover:bg-red-800 text-white  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                 >
                     Submit
