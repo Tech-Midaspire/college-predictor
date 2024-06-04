@@ -255,11 +255,11 @@ const Navbar = () => {
             <Link href="https://eduaspire.xyz/contact-us" className="block px-4 py-2 lg:-mr-3 text-base text-white font-sans ">
               Contact
             </Link>
-            <Link href="https://college-predictor-beta.vercel.app/"><button className="ml-2 px-6 py-[10px] font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
+            <Link href="https://eduaspire.online/"><button className="ml-2 px-6 py-[10px] font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
               College Predictor
             </button></Link>
 
-            <Link href="https://college-predictor-beta.vercel.app/scholarships">
+            <Link href="https://eduaspire.online/scholarships">
               <button className="ml-2 px-8 py-[10px] font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
                 Scholarship
               </button>
