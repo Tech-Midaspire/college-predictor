@@ -110,7 +110,7 @@ const ContactForm = ({ onFormSubmit }) => {
             </div>
             <div className="flex items-center justify-center lg:mt-4">
                 <button
-                    className="bg-indigo-700 text-center hover:bg-red-800 text-white  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-indigo-700 rounded-lg text-center hover:bg-red-800 text-white  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                 >
                     Submit
