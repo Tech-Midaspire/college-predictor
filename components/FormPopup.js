@@ -23,8 +23,8 @@ const FormPopup = ({ children }) => {
     return (
         <>
             {showPopup && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-black p-8 rounded-lg relative shadow-lg text-white">
+                <div className=" fixed inset-0 z-50 flex items-center justify-center bg-zinc-950 bg-opacity-60">
+                    <div className=" p-8 rounded-lg relative shadow-lg text-black">
                         {isSubmitting ? (
                             <div className="flex justify-center items-center">
                                 <div className="w-20 h-20 border-t-4 border-b-4 border-white rounded-full animate-spin"></div>
