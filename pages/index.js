@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const footerLeftMenus = [
     { url: 'https://eduaspire.xyz/about-us', name: 'About' },
-    { url: 'https://eduaspire.xyz/faq', name: 'FAQ' },
+    { url: 'https://eduaspire.xyz/faq', name: 'FAQs' },
     { url: 'https://eduaspire.xyz/blogs', name: 'Blogs' },
 ];
 
