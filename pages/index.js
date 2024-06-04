@@ -172,7 +172,7 @@ const HomePage = () => {
 
     return (
 
-        <div className="flex flex-col h-screen bg-slate-950 ">
+        <div className="flex flex-col h-screen bg-slate-950 -mr-3 lg:mr-0 ">
             <div className="flex justify-center items-center flex-col flex-grow px-4 sm:px-10">
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-FHGVRT52L7"
