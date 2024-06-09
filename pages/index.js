@@ -6,15 +6,15 @@ import getConstants from "../constants";
 import Footer from '../components/Footer';
 
 const footerLeftMenus = [
-    { url: 'https://eduaspire.xyz/about-us', name: 'About' },
-    { url: 'https://eduaspire.xyz/faq', name: 'FAQs' },
-    { url: 'https://eduaspire.xyz/blogs', name: 'Blogs' },
+    { url: '/about', name: 'About' },
+    { url: '/faq', name: 'FAQ' },
+    { url: '/blogs', name: 'Blogs' },
 ];
 
 const footerRightMenus = [
-    { url: 'https://eduaspire.xyz/', name: 'Contact' },
-    { url: 'https://eduaspire.xyz/', name: 'Support' },
-    { url: 'https://eduaspire.xyz/', name: 'Courses' },
+    { url: '/contact', name: 'Contact' },
+    { url: '/support-ticket-faq', name: 'Support' },
+    { url: '/courses', name: 'Courses' },
 
 ];
 
@@ -172,7 +172,7 @@ const HomePage = () => {
 
     return (
 
-        <div className="flex flex-col h-screen bg-slate-950 -mr-3 lg:mr-0 ">
+        <div className="flex flex-col  h-[100%] bg-slate-950  lg:mr-0 ">
             <div className="flex justify-center items-center flex-col flex-grow px-4 sm:px-10">
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-FHGVRT52L7"
@@ -189,160 +189,78 @@ const HomePage = () => {
                 </Script>
                 <Script src="https://kit.fontawesome.com/0a5626b05a.js" crossorigin="anonymous"></Script>
 
-                <div className="text-center flex flex-col  items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mt-6 lg:mt-10  pb-10 border-b-2 border-zinc-950  min-h-sc">
+                <div className="text-center flex flex-col items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mt-6 lg:mt-12 pb-10 border-b-2 border-zinc-950 min-h-sc">
                     <h1 className="text-xl lg:text-2xl md:text-3xl font-bold mb-6 text-zinc-100">{getConstants().TITLE}</h1>
 
-                    <div className="grid grid-cols-2 sm:flex-row gap-10  flex-wrap w-full overscroll-y-auto lg:mt-3">
-
-                        <div className="  lg:my-3  w-full">
-                            <label className="block text-sm lg:text-md font-semibold  text-zinc-100 mb-2">
-                                {getConstants().EXAM_LABEL}
-                            </label>
-                            <Dropdown
-                                options={examOptions}
-                                onChange={handleExamDropdownChange}
-                                className="w-full"
-                            />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6  w-[100%] overscroll-y-auto lg:mt-3">
+                        <div className="lg:py-3 w-full">
+                            <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().EXAM_LABEL}</label>
+                            <Dropdown options={examOptions} onChange={handleExamDropdownChange} className="w-full" />
                         </div>
 
-                        <div className=" lg:my-3 w-full">
-                            <label className="block  text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                {getConstants().CATEGORY_LABEL}
-                            </label>
-                            <Dropdown
-                                options={
-                                    exam === "MHT CET"
-                                        ? mhtcetCategoryOptions
-                                        : exam === "KCET"
-                                            ? kcetCategoryOptions
-                                            : categoryOptions
-                                }
-                                onChange={handleCategoryDropdownChange}
-                                className="w-full"
-                            />
+                        <div className="lg:py-3 w-full">
+                            <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().CATEGORY_LABEL}</label>
+                            <Dropdown options={exam === "MHT CET" ? mhtcetCategoryOptions : exam === "KCET" ? kcetCategoryOptions : categoryOptions} onChange={handleCategoryDropdownChange} className="w-full" />
                         </div>
 
-                        <div className="lg:my-3 w-full">
-                            <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                {exam === "NEET" || exam === "MHT CET" || exam === "KCET"
-                                    ? `${getConstants().NEET_RANK_LABEL} (${exam}):`
-                                    : `${getConstants().RANK_LABEL} (${exam}):`}
-                            </label>
-                            <input
-                                type="number"
-                                value={rank}
-                                onChange={handleRankChange}
-                                className="border border-gray-300 rounded w-full p-2"
-                            />
+                        <div className="lg:py-3 w-full">
+                            <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{exam === "NEET" || exam === "MHT CET" || exam === "KCET" ? `${getConstants().NEET_RANK_LABEL} (${exam}):` : `${getConstants().RANK_LABEL} (${exam}):`}</label>
+                            <input type="number" value={rank} onChange={handleRankChange} className="border border-gray-300 rounded w-full p-2" />
                         </div>
-
 
                         {(exam !== "MHT CET" && exam !== "KCET") && (
-                            <div className=" lg:my-[14px] w-full">
-                                <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                    {getConstants().ROUND_NUMBER_LABEL}
-                                </label>
-                                <Dropdown
-                                    options={roundNumberOptions}
-                                    onChange={handleRoundNumberDropdownChange}
-                                    isDisabled={exam === "MHT CET" || exam === "KCET"}
-                                    className="w-full"
-                                />
+                            <div className="lg:py-3 w-full">
+                                <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().ROUND_NUMBER_LABEL}</label>
+                                <Dropdown options={roundNumberOptions} onChange={handleRoundNumberDropdownChange} isDisabled={exam === "MHT CET" || exam === "KCET"} className="w-full" />
                             </div>
                         )}
+
                         {(exam !== "NEET" && exam !== "KCET") && (
-                            <div className=" lg:my-3 w-full mt-2 lg:mt-0">
-                                <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-7 lg:mb-2">
-                                    {getConstants().GENDER_LABEL}
-                                </label>
-                                <Dropdown
-                                    options={exam === "MHT CET" ? mhtcetGenderOptions : genderOptions}
-                                    onChange={handleGenderDropdownChange}
-                                    isDisabled={exam === "NEET" || exam === "KCET"}
-                                    className="w-full  lg:mt-0"
-                                />
+                            <div className="lg:py-3 w-full">
+                                <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2 ">{getConstants().GENDER_LABEL}</label>
+                                <Dropdown options={exam === "MHT CET" ? mhtcetGenderOptions : genderOptions} onChange={handleGenderDropdownChange} isDisabled={exam === "NEET" || exam === "KCET"} className="w-full" />
                             </div>
                         )}
+
                         {exam !== "NEET" && (
-                            <div className=" -my-7 lg:my-3 w-full mt-2 lg:mt-0">
-                                <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                    {getConstants().STATE_LABEL}
-                                </label>
-                                <Dropdown
-                                    options={
-                                        exam === "MHT CET"
-                                            ? mhtcetStateOptions
-                                            : exam === "KCET"
-                                                ? kcetStateOptions
-                                                : stateOptions
-                                    }
-                                    onChange={handleStateNameDropdownChange}
-                                    isDisabled={exam === "NEET"}
-                                    className="w-full "
-                                />
+                            <div className="lg:py-3 w-full">
+                                <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().STATE_LABEL}</label>
+                                <Dropdown options={exam === "MHT CET" ? mhtcetStateOptions : exam === "KCET" ? kcetStateOptions : stateOptions} onChange={handleStateNameDropdownChange} isDisabled={exam === "NEET"} className="w-full" />
                             </div>
                         )}
+
                         {exam === "MHT CET" && (
                             <>
-                                <div className=" lg:my-3 w-full">
-                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                        {getConstants().MHTCET_PWD_LABEL}
-                                    </label>
-                                    <Dropdown
-                                        options={pwdOptions}
-                                        onChange={handlePwdDropdownChange}
-                                        isDisabled={exam !== "MHT CET"}
-                                        className="w-full"
-                                    />
+                                <div className="lg:py-3 w-full">
+                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().MHTCET_PWD_LABEL}</label>
+                                    <Dropdown options={pwdOptions} onChange={handlePwdDropdownChange} isDisabled={exam !== "MHT CET"} className="w-full" />
                                 </div>
-                                <div className=" lg:my-3w-full">
-                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                        {getConstants().MHTCET_DEFENSE_LABEL}
-                                    </label>
-                                    <Dropdown
-                                        options={defenseOptions}
-                                        onChange={handleDefenseDropdownChange}
-                                        isDisabled={exam !== "MHT CET"}
-                                        className="w-full"
-                                    />
+                                <div className="lg:py-3 w-full">
+                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().MHTCET_DEFENSE_LABEL}</label>
+                                    <Dropdown options={defenseOptions} onChange={handleDefenseDropdownChange} isDisabled={exam !== "MHT CET"} className="w-full" />
                                 </div>
                             </>
                         )}
+
                         {exam === "KCET" && (
                             <>
-                                <div className=" lg:my-3 w-full">
-                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                        {getConstants().KCET_LANGUAGE_LABEL}
-                                    </label>
-                                    <Dropdown
-                                        options={kcetLanguageOptions}
-                                        onChange={handleLanguageChange}
-                                        isDisabled={exam !== "KCET"}
-                                        className="w-full"
-                                    />
+                                <div className="lg:py-3 w-full">
+                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().KCET_LANGUAGE_LABEL}</label>
+                                    <Dropdown options={kcetLanguageOptions} onChange={handleLanguageChange} isDisabled={exam !== "KCET"} className="w-full" />
                                 </div>
-                                <div className="lg:my-3 w-full">
-                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">
-                                        {getConstants().KCET_RURAL_LABEL}
-                                    </label>
-                                    <Dropdown
-                                        options={kcetRuralOptions}
-                                        onChange={handleRuralChange}
-                                        isDisabled={exam !== "KCET"}
-                                        className="w-full"
-                                    />
+                                <div className="lg:py-3 w-full">
+                                    <label className="block text-sm lg:text-md font-semibold text-zinc-100 mb-2">{getConstants().KCET_RURAL_LABEL}</label>
+                                    <Dropdown options={kcetRuralOptions} onChange={handleRuralChange} isDisabled={exam !== "KCET"} className="w-full" />
                                 </div>
                             </>
                         )}
+
+                        <div className="py-2 lg:py-3 lg:mx-[50%] flex justify-center items-center  w-full">
+                            <button className="lg:mt-10 px-5 py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-indigo-700 disabled:text-white disabled:cursor-not-allowed" onClick={handleSubmit} disabled={isSubmitDisabled}>Submit</button>
+                        </div>
                     </div>
-                    <button
-                         className="mt-[76px] lg:mt-10 px-5  py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-indigo-700  disabled:text-white disabled:cursor-not-allowed"
-                        onClick={handleSubmit}
-                        disabled={isSubmitDisabled}
-                    >
-                        Submit
-                    </button>
                 </div>
+
 
             </div>
             <Footer
