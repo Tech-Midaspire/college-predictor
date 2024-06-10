@@ -6,17 +6,17 @@ import getConstants from "../constants";
 import Footer from '../components/Footer';
 
 const footerLeftMenus = [
-    { url: '/about', name: 'About' },
-    { url: '/faq', name: 'FAQ' },
-    { url: '/blogs', name: 'Blogs' },
+    { url: 'https://eduaspire.xyz/about-us', name: 'About' },
+    { url: 'https://eduaspire.xyz/faq', name: 'FAQ' },
+    { url: 'https://eduaspire.xyz/blogs', name: 'Blogs' },
 ];
 
 const footerRightMenus = [
-    { url: '/contact', name: 'Contact' },
-    { url: '/support-ticket-faq', name: 'Support' },
-    { url: '/courses', name: 'Courses' },
-
+    { url: 'https://eduaspire.xyz/', name: 'Contact' },
+    { url: 'https://eduaspire.xyz/', name: 'Support' },
+    { url: 'https://eduaspire.xyz/', name: 'Courses' },
 ];
+
 
 
 const HomePage = () => {
