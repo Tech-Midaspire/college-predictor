@@ -67,7 +67,7 @@ const Navbar = () => {
                 <Image src="/logo.webp" alt="Logo" width={100} height={100} />
               </Link>
             </div>
-            <div className="relative z-20 hidden md:block">
+            <div className="relative z-20 hidden xl:block ">
               {/* Streams button */}
               <button
                 onMouseEnter={() => handleMouseEnter("streams")}
@@ -166,7 +166,7 @@ const Navbar = () => {
           </div>
 
           {/* Search */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="flex items-center -ml-4">
               <div className="hidden md:block relative">
                 <div className="flex items-center">
@@ -184,22 +184,22 @@ const Navbar = () => {
 
 
           {/* Right side for links and buttons */}
-          <div className="hidden md:flex items-center ">
-            <Link href="https://eduaspire.xyz/about-us" className="block px-4 py-2 text-base text-white font-sans">
+          <div className="hidden lg:flex  items-center ">
+            <Link href="https://eduaspire.xyz/about-us" className="hidden lg:block  px-4 py-2 text-base text-white font-sans">
               Our Story
             </Link>
-            <Link href="https://eduaspire.xyz/blogs" className="block px-4 py-2 text-base text-white font-sans">
+            <Link href="https://eduaspire.xyz/blogs" className=" hidden lg:block px-4 py-2 text-base text-white font-sans">
               Blog
             </Link>
-            <Link href="https://eduaspire.xyz/contact-us" className="block px-4 py-2 text-base text-white font-sans">
+            <Link href="https://eduaspire.xyz/contact-us" className="hidden lg:block px-4 py-2 text-base text-white font-sans">
               Contact
             </Link>
-            <Link href="https://eduaspire.online/">
+            <Link className="hidden lg:block" href="https://eduaspire.online/">
               <button className="ml-2 px-6 py-2 font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
                 College Predictor
               </button>
             </Link>
-            <Link href="https://eduaspire.online/scholarships">
+            <Link className="hidden lg:block" href="https://eduaspire.online/scholarships">
               <button className="ml-2 px-8 py-2 font-sans font-semibold rounded-sm focus:outline-none focus:bg-white-700 bg-indigo-700 hover:bg-white hover:text-indigo-700">
                 Scholarship
               </button>
@@ -207,7 +207,7 @@ const Navbar = () => {
           </div>
 
           {/* Hamburger Menu */}
-          <div className="md:hidden flex items-center mr-2">
+          <div className="lg:hidden block items-center mr-2">
             <button
               onClick={handleMenuToggle}
               className="text-white focus:outline-none"
@@ -242,7 +242,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-slate-900 h-screen overflow-y-auto">
+        <div className="lg:hidden bg-slate-900 h-screen overflow-y-auto">
           <div className="py-2 px-2">
             <div className="relative">
               <div className="flex items-center">
