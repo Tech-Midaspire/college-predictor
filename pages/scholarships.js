@@ -194,7 +194,7 @@ const ScholarshipPage = () => {
                 </p>
               </div>
               <div className="w-full sm:w-1/2">
-                <label className="block text-md font-semibold text-zinc-100 mb-2">
+                <label className="block text-md font-semibold text-zinc-100 mb-8 lg:mb-2  ">
                   {getConstants().GENDER_LABEL}
                 </label>
                 <Dropdown
