@@ -85,7 +85,7 @@ const Footer = ({ appLogo, eduaspire, facebookUrl, instagramUrl, linkedInUrl, fo
             {/* Contact Info */}
             <div className="col-12 col-sm-6 col-md-6 col-lg-3 pl-[15px] lg:pl-0">
               <div className="footer-widget">
-                <h6 className="footer-widget-title text-white font-bold text-21 mb-8">Contact Info</h6>
+                <h6 className="footer-widget-title text-xl text-white font-bold mb-8 text-21">Contact Info</h6>
                 <ul className="footer-links text-white">
                   <li className="pb-5 text-16 leading-6">
                     <i className="fa-solid fa-location-dot text-indigo-600 mr-5 text-23 align-middle"></i>
