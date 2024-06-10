@@ -62,7 +62,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center w-full">
           {/* Left side for logo and streams button */}
           <div className="flex items-center">
-            <div className="flex-shrink-0 mr-16 -ml-10 lg:-ml-7">
+            <div className="flex-shrink-0  mr-16 lg:-ml-6 ">
               <Link href="https://eduaspire.xyz/">
                 <Image src="/logo.webp" alt="Logo" width={100} height={100} />
               </Link>
@@ -207,7 +207,7 @@ const Navbar = () => {
           </div>
 
           {/* Hamburger Menu */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center mr-2">
             <button
               onClick={handleMenuToggle}
               className="text-white focus:outline-none"
@@ -378,5 +378,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
