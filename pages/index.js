@@ -255,9 +255,10 @@ const HomePage = () => {
                             </>
                         )}
 
-                        <div className="py-2 lg:py-3 lg:mx-[50%] flex justify-center items-center  w-full">
-                            <button className="lg:mt-10 px-5 py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-indigo-700 disabled:text-white disabled:cursor-not-allowed" onClick={handleSubmit} disabled={isSubmitDisabled}>Submit</button>
-                        </div>
+
+                    </div>
+                    <div className="py-10 lg:py-3  lg:mx-[50%] flex justify-center items-center  w-full">
+                        <button className="lg:mt-10 px-5 py-2 rounded-lg bg-red-600 text-zinc-100 hover:cursor-pointer hover:bg-red-700 active:bg-red-800 disabled:bg-indigo-700 disabled:text-white disabled:cursor-not-allowed" onClick={handleSubmit} disabled={isSubmitDisabled}>Submit</button>
                     </div>
                 </div>
 
