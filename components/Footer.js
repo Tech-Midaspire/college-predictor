@@ -109,10 +109,7 @@ const Footer = ({ appLogo, eduaspire, facebookUrl, instagramUrl, linkedInUrl, fo
             <div className="col-12 col-md-12">
               <div className="copyright-text text-center ">
                 <p className="text-white font-13 al leading-[20px]">
-                  {appCopyright} Developed by{' '}
-                  <Link href="https://corescent.in">
-                    <span className="text-white ">Corescent Technologies |</span>
-                  </Link>
+                  {appCopyright} 
                   <Link href="https://eduaspire.xyz/privacy-policy">
                     <span className="text-white ">Privacy Policy |</span>
                   </Link>
